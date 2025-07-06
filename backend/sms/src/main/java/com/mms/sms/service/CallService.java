@@ -1,10 +1,8 @@
 package com.mms.sms.service;
-import io.github.cdimascio.dotenv.Dotenv;
 
 import com.twilio.Twilio;
 import com.twilio.rest.api.v2010.account.Call;
 import com.twilio.type.PhoneNumber;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -14,12 +12,9 @@ import java.nio.charset.StandardCharsets;
 @Service
 public class CallService {
 
-   private final Dotenv dotenv = Dotenv.configure().load();
-
-private final String sid = dotenv.get("TWILIO_ACCOUNT_SID");
-private final String token = dotenv.get("TWILIO_AUTH_TOKEN");
-private final String from = dotenv.get("TWILIO_PHONE_NUMBER");
-
+    private final String sid = System.getenv("TWILIO_ACCOUNT_SID");
+    private final String token = System.getenv("TWILIO_AUTH_TOKEN");
+    private final String from = System.getenv("TWILIO_PHONE_NUMBER");
 
     private static final String BASE_CALLBACK_URL = "https://c9ee-2a0a-ef40-e1c-ec01-dc98-edaf-2b3e-6af0.ngrok-free.app/api/outbound-call";
 
