@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 
 @CrossOrigin(origins = {"http://localhost:3000", "https://mms-frontend.netlify.app"})
-
 @RestController
 @RequestMapping("/api")
 public class CallController {
@@ -32,11 +31,10 @@ public class CallController {
     public void handleIncomingCall(HttpServletResponse response) throws IOException {
         Gather gather = new Gather.Builder()
                 .action("https://mms-backend-5erf.onrender.com/api/handle-key")
-
                 .method(HttpMethod.POST)
                 .numDigits(1)
                 .say(new Say.Builder(
-                        "Welcome to Mihretab business group. Press 1 to talk to customer support which is Mihretab. Press 2 to leave a message. Press 3 for opt out.")
+                        "Welcome to Mihretab business group. Press 1 to talk to customer support. Press 2 to leave a message. Press 3 to opt out.")
                         .voice(Say.Voice.ALICE)
                         .language(Say.Language.EN_GB)
                         .build())
