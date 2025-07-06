@@ -1,0 +1,42 @@
+package com.mms.sms.service;
+import io.github.cdimascio.dotenv.Dotenv;
+
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Call;
+import com.twilio.type.PhoneNumber;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+import java.net.URI;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+
+@Service
+public class CallService {
+
+   private final Dotenv dotenv = Dotenv.configure().load();
+
+private final String sid = dotenv.get("TWILIO_ACCOUNT_SID");
+private final String token = dotenv.get("TWILIO_AUTH_TOKEN");
+private final String from = dotenv.get("TWILIO_PHONE_NUMBER");
+
+
+    private static final String BASE_CALLBACK_URL = "https://c9ee-2a0a-ef40-e1c-ec01-dc98-edaf-2b3e-6af0.ngrok-free.app/api/outbound-call";
+
+    public String makeCall(String to) {
+        Twilio.init(sid, token);
+
+        try {
+            String callbackWithNumber = BASE_CALLBACK_URL + "?to=" + URLEncoder.encode(to, StandardCharsets.UTF_8.toString());
+
+            Call call = Call.creator(
+                    new PhoneNumber(to),
+                    new PhoneNumber(from),
+                    new URI(callbackWithNumber)).create();
+
+            return "📞 Call started! SID: " + call.getSid();
+        } catch (Exception e) {
+            return "❌ Call failed: " + e.getMessage();
+        }
+    }
+}
