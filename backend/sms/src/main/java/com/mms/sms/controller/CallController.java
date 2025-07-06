@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://mms-frontend.netlify.app"})
+
 @RestController
 @RequestMapping("/api")
 public class CallController {
@@ -30,7 +31,8 @@ public class CallController {
     @RequestMapping(value = "/voice", method = { RequestMethod.GET, RequestMethod.POST })
     public void handleIncomingCall(HttpServletResponse response) throws IOException {
         Gather gather = new Gather.Builder()
-                .action("https://c9ee-2a0a-ef40-e1c-ec01-dc98-edaf-2b3e-6af0.ngrok-free.app/api/handle-key")
+                .action("https://mms-backend-5erf.onrender.com/api/handle-key")
+
                 .method(HttpMethod.POST)
                 .numDigits(1)
                 .say(new Say.Builder(

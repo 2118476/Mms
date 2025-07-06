@@ -16,7 +16,7 @@ public class CallService {
     private final String token = System.getenv("TWILIO_AUTH_TOKEN");
     private final String from = System.getenv("TWILIO_PHONE_NUMBER");
 
-    private static final String BASE_CALLBACK_URL = "https://c9ee-2a0a-ef40-e1c-ec01-dc98-edaf-2b3e-6af0.ngrok-free.app/api/outbound-call";
+   String BASE_CALLBACK_URL = "https://<ngrok-url>.ngrok-free.app/api/outbound-call";
 
     public String makeCall(String to) {
         Twilio.init(sid, token);
