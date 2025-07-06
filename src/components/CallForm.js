@@ -11,29 +11,31 @@ const CallForm = () => {
   const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
 
-  const handleCall = async (e) => {
-    e.preventDefault();
-    const fullNumber = '+' + phoneNumber;
-    const phoneRegex = /^\+\d{7,15}$/;
+ const handleCall = async (e) => {
+  e.preventDefault();
+  const fullNumber = '+' + phoneNumber;
+  const phoneRegex = /^\+\d{7,15}$/;
 
-    if (!phoneRegex.test(fullNumber)) {
-      setStatus('❌ Invalid phone number format.');
-      return;
-    }
+  if (!phoneRegex.test(fullNumber)) {
+    setStatus('❌ Invalid phone number format.');
+    return;
+  }
 
-    setLoading(true);
-    try {
-      const res = await axios.post(`${process.env.REACT_APP_API_URL}/make-call`, {
-        phoneNumber: fullNumber,
-        message
-      });
-      setStatus('📞 ' + res.data);
-    } catch (error) {
-      setStatus('❌ Call failed. ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_API_URL}/make-call`, {
+      phoneNumber: fullNumber
+    });
+    setStatus('📞 ' + res.data);
+    setPhoneNumber('');
+    setMessage('');
+  } catch (error) {
+    setStatus('❌ Call failed. ' + error.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="max-w-md mx-auto bg-white dark:bg-gray-800 p-6 mt-10 rounded-2xl shadow-xl">
