@@ -79,7 +79,37 @@ public class CallController {
                         .say(new Say.Builder("Connecting you now. Please wait.").build())
                         .dial(dial)
                         .build();
-            } else {
+            } 
+            
+            
+            else if ("4".equals(digits)) {
+                Dial dial = new Dial.Builder()
+                        .number(new Number.Builder("+447388617329").build())
+                        .build();
+
+                twiml = new VoiceResponse.Builder()
+                        .say(new Say.Builder("Connecting you now.I am gonna tell you a jocke untill mihretab answer  Please wait. Ethiopian Jokes\n" + //
+                                                                "The New Shoes\n" + //
+                                                                "A man buys a brand new pair of shoes. He walks out of the shop and immediately trips and falls. He looks at his shoes and says, 'See? I told you not to rush!'\n" + //
+                                                                "\n" + //
+                                                                "The Lazy Farmer\n" + //
+                                                                "A farmer is incredibly lazy. One day, his neighbor asks him, 'Why don't you ever plant teff [a common Ethiopian grain]?' The farmer replies, 'Because it's too much work. You have to plant it, harvest it, thresh it, grind it, and then bake it into injera! I'll just wait for the bread to grow on trees.'\n" + //
+                                                                "\n" + //
+                                                                "The Speedy Driver\n" + //
+                                                                "A taxi driver is going incredibly fast. His passenger is scared and says, 'Driver, please slow down! I'm not in a hurry to get to the next world!' The driver replies, 'Don't worry, we're not going to the next world. We're just going to the next traffic light!'\n" + //
+                                                                "\n" + //
+                                                                "The Student and the Exam\n" + //
+                                                                "A student is taking an exam. He looks at the first question, then the second, then the third, and he doesn't know any of the answers. He raises his hand and asks the teacher, 'Excuse me, teacher, but is this exam supposed to be a secret?' The teacher asks, 'What do you mean?' The student replies, 'Because I don't know any of the answers!'\n" + //
+                                                                "\n" + //
+                                                                "The Doctor's Advice\n" + //
+                                                                "A man goes to the doctor and says, 'Doctor, I can't sleep. I toss and turn all night.' The doctor thinks for a moment and says, 'Hmm, have you tried counting sheep?' The man sighs and says, 'Yes, but by the time I get to 100, I start thinking about all the things I need to do tomorrow, and then I'm wide awake again!'").build())
+                        .dial(dial)
+                        .build();
+            }
+            
+            
+            
+            else {
                 twiml = new VoiceResponse.Builder()
                         .say(new Say.Builder("Invalid input. Goodbye.").build())
                         .build();
