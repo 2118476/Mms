@@ -110,4 +110,9 @@ public class CallController {
         response.setContentType("application/xml");
         response.getWriter().write(twiml.toXml());
     }
+    @GetMapping("/health")
+public String health() {
+    return "OK";
+}
+
 }
