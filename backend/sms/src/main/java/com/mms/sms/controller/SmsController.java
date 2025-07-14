@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = { "http://localhost:3000", "https://mms-frontend.netlify.app" })
+@CrossOrigin(origins = "https://gorgeous-cendol-eb18cc.netlify.app")
 
 public class SmsController {
 
